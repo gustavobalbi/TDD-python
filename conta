@@ -1,0 +1,56 @@
+class Conta:
+    def __init__(self, nome):
+        self.nome = nome
+        self.saldo = 0.0
+        self.extrato = []
+
+    def criar_conta(self):
+        conta1 = Conta(self.nome)
+        if conta1:
+            print("Conta criada com sucesso!")
+
+        print(f"Bem vindo {self.nome}!")
+    
+        print(self.saldo)
+        print(self.extrato)
+
+    def deposito(self):
+        stts = 0
+        saldo = self.saldo
+        while stts == 0:
+            valor = float(input("Valor do depósito: "))
+            if valor <= 0:
+                print("Insira um valor válido: ")
+            else:
+                stts = 1
+
+        self.saldo += valor
+
+        if self.saldo > saldo:
+            print("Depósito efeituado com sucesso") 
+        
+        self.extrato.append(f'Depósito: {valor}')
+        print(self.extrato)
+
+    def saque(self):
+        stts = 0
+        saldo = self.saldo
+        while stts == 0:
+            valor = float(input("Valor do saque: "))
+            if valor > saldo or valor <= 0:
+                print("Insira um valor válido.")
+            else:
+                stts = 1 
+        
+        self.saldo -= valor
+
+        if self.saldo < saldo:
+            print("Saque efeituado com sucesso")
+
+        self.extrato.append(f'Saque: {valor}')
+        print(self.extrato)
+        
+conta1 = Conta("Gustavo")
+conta1.criar_conta()
+conta1.deposito()
+conta1.saque()
